@@ -1,28 +1,3 @@
----
-jupyter:
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
-  language_info:
-    codemirror_mode:
-      name: ipython
-      version: 3
-    file_extension: .py
-    mimetype: text/x-python
-    name: python
-    nbconvert_exporter: python
-    pygments_lexer: ipython3
-    version: 3.10.8
-  nbformat: 4
-  nbformat_minor: 2
-  orig_nbformat: 4
-  vscode:
-    interpreter:
-      hash: b0fa6594d8f4cbf19f97940f81e996739fb7646882a419484c72d19e05852a7e
----
-
-::: {.cell .markdown}
 # Handwriting Latex Calculator - Gulkaran Singh
 
 Write a mathematical expression into the GUI to convert it into Latex
@@ -31,27 +6,21 @@ uses machine learning and a convolutional neural network to parse images
 to the correct Latex format.
 
 Here are the imports needed for this project:
-:::
 
-::: {.cell .code execution_count="11"}
-``` {.python}
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.python.keras import layers, models, regularizers, initializers, optimizers
 ```
-:::
 
-::: {.cell .markdown}
 ## Creating the Dataset
 
 Let\'s create our dataset using a Keras utility. We will load our
 dataset with some parameters and a validation split of 80% training and
 20% testing/validation.
-:::
 
-::: {.cell .code execution_count="12"}
-``` {.python}
+```python
 data_directory = 'dataset/images'
 
 image_height, image_width = 45, 45
@@ -78,25 +47,20 @@ testing_dataset = tf.keras.utils.image_dataset_from_directory(
 class_names = training_dataset.class_names
 print(class_names)
 ```
+```
+Found 375974 files belonging to 82 classes.
+Using 300780 files for training.
+Found 375974 files belonging to 82 classes.
+Using 75194 files for validation.
+['!', '(', ')', '+', ',', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '=', 'A', 'C', 'Delta', 'G', 'H', 'M', 'N', 'R', 'S', 'T', 'X', '[', ']', 'alpha', 'ascii_124', 'b', 'beta', 'cos', 'd', 'div', 'e', 'exists', 'f', 'forall', 'forward_slash', 'gamma', 'geq', 'gt', 'i', 'in', 'infty', 'int', 'j', 'k', 'l', 'lambda', 'ldots', 'leq', 'lim', 'log', 'lt', 'mu', 'neq', 'o', 'p', 'phi', 'pi', 'pm', 'prime', 'q', 'rightarrow', 'sigma', 'sin', 'sqrt', 'sum', 'tan', 'theta', 'times', 'u', 'v', 'w', 'y', 'z', '{', '}']```
 
-::: {.output .stream .stdout}
-    Found 375974 files belonging to 82 classes.
-    Using 300780 files for training.
-    Found 375974 files belonging to 82 classes.
-    Using 75194 files for validation.
-    ['!', '(', ')', '+', ',', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '=', 'A', 'C', 'Delta', 'G', 'H', 'M', 'N', 'R', 'S', 'T', 'X', '[', ']', 'alpha', 'ascii_124', 'b', 'beta', 'cos', 'd', 'div', 'e', 'exists', 'f', 'forall', 'forward_slash', 'gamma', 'geq', 'gt', 'i', 'in', 'infty', 'int', 'j', 'k', 'l', 'lambda', 'ldots', 'leq', 'lim', 'log', 'lt', 'mu', 'neq', 'o', 'p', 'phi', 'pi', 'pm', 'prime', 'q', 'rightarrow', 'sigma', 'sin', 'sqrt', 'sum', 'tan', 'theta', 'times', 'u', 'v', 'w', 'y', 'z', '{', '}']
-:::
-:::
 
-::: {.cell .markdown}
 ## Plotting the Dataset
 
 With  `matplotlib.pyplot`  we can visualize the data and their
 respective class names. Here is a 5x5 sample size:
-:::
 
-::: {.cell .code execution_count="13"}
-``` {.python}
+```python
 plt.figure(figsize=(10, 10))
 for images, labels in training_dataset.take(1):
   for i in range(25):
@@ -106,12 +70,8 @@ for images, labels in training_dataset.take(1):
     plt.axis('off')
 ```
 
-::: {.output .display_data}
 ![](readme_images/5x5_grid.png)
-:::
-:::
 
-::: {.cell .markdown}
 ## Converting to Numpy Array
 
 With our usage of  `keras.utils`  to convert our images into type
@@ -120,10 +80,8 @@ Datasets into Numpy arrays using the `.numpy()` method. We can also
 normalize/standardize the data as each image has RGB channel values from
 0-255. It would be more ideal for the range to be smaller (e.g 0-1) for
 computation benefits.
-:::
 
-::: {.cell .code execution_count="14"}
-``` {.python}
+```python
 # converting training dataset
 for image_batch, labels_batch in training_dataset:
   training_images, training_labels = image_batch.numpy(), labels_batch.numpy()
@@ -137,9 +95,7 @@ for image_batch, labels_batch in testing_dataset:
 # normalize the pixel values to be between 0 and 1
 training_images, training_labels = training_images / 255.0, training_labels / 255.0
 ```
-:::
 
-::: {.cell .markdown}
 Now lets try visualizing the a certain image at a given index after
 we\'ve normalized the data.
 
@@ -152,8 +108,7 @@ Explaining the 4th line in this code (`plt.title(...)`):
     just in type  `float`  so we convert it to an integer with  `int()`.
 :::
 
-::: {.cell .code execution_count="22"}
-``` {.python}
+```python
 # attempt to visualize a single picture at a given index
 image_index = 11
 plt.imshow(training_images[image_index], cmap=plt.cm.binary)
@@ -162,12 +117,8 @@ plt.axis('off')
 plt.show()
 ```
 
-::: {.output .display_data}
 ![](readme_images/plus.png)
-:::
-:::
 
-::: {.cell .markdown}
 ## Creating our Model
 
 With all that initial setup, we can finally create our model! The
@@ -178,8 +129,7 @@ image which can be provided to a dense layer to attempt to classify the
 image based on the features found.
 :::
 
-::: {.cell .code execution_count="67"}
-``` {.python}
+```python
 # creating our sequential model frame
 model = models.Sequential()
 
@@ -203,90 +153,75 @@ model.compile(
   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
   metrics=['accuracy'])
 ```
-:::
 
-::: {.cell .code execution_count="68"}
-``` {.python}
+```python
 model.summary()
 ```
 
-::: {.output .stream .stdout}
-    Model: "handwriting_model"
-    _________________________________________________________________
-    Layer (type)                 Output Shape              Param #   
-    =================================================================
-    conv2d_45 (Conv2D)           (None, 43, 43, 32)        896       
-    _________________________________________________________________
-    max_pooling2d_34 (MaxPooling (None, 21, 21, 32)        0         
-    _________________________________________________________________
-    conv2d_46 (Conv2D)           (None, 19, 19, 64)        18496     
-    _________________________________________________________________
-    max_pooling2d_35 (MaxPooling (None, 9, 9, 64)          0         
-    _________________________________________________________________
-    conv2d_47 (Conv2D)           (None, 7, 7, 64)          36928     
-    _________________________________________________________________
-    flatten_15 (Flatten)         (None, 3136)              0         
-    _________________________________________________________________
-    dense_30 (Dense)             (None, 448)               1405376   
-    _________________________________________________________________
-    dense_31 (Dense)             (None, 82)                36818     
-    =================================================================
-    Total params: 1,498,514
-    Trainable params: 1,498,514
-    Non-trainable params: 0
-    _________________________________________________________________
-:::
-:::
+```
+Model: "handwriting_model"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_45 (Conv2D)           (None, 43, 43, 32)        896       
+_________________________________________________________________
+max_pooling2d_34 (MaxPooling (None, 21, 21, 32)        0         
+_________________________________________________________________
+conv2d_46 (Conv2D)           (None, 19, 19, 64)        18496     
+_________________________________________________________________
+max_pooling2d_35 (MaxPooling (None, 9, 9, 64)          0         
+_________________________________________________________________
+conv2d_47 (Conv2D)           (None, 7, 7, 64)          36928     
+_________________________________________________________________
+flatten_15 (Flatten)         (None, 3136)              0         
+_________________________________________________________________
+dense_30 (Dense)             (None, 448)               1405376   
+_________________________________________________________________
+dense_31 (Dense)             (None, 82)                36818     
+=================================================================
+Total params: 1,498,514
+Trainable params: 1,498,514
+Non-trainable params: 0
+_________________________________________________________________
+```
 
-::: {.cell .markdown}
 ## Training the Model
 
 Now our model is complete, we can train our model and how well it
 preforms.
-:::
 
-::: {.cell .code execution_count="69"}
-``` {.python}
+```python
 history = model.fit(training_dataset,
   validation_data=testing_dataset,
   epochs=3, batch_size=128)
 ```
 
-::: {.output .stream .stdout}
-    Epoch 1/3
-    9400/9400 [==============================] - 159s 17ms/step - loss: 0.6091 - accuracy: 0.8492 - val_loss: 0.3076 - val_accuracy: 0.9062
-    Epoch 2/3
-    9400/9400 [==============================] - 170s 18ms/step - loss: 0.2166 - accuracy: 0.9334 - val_loss: 0.1839 - val_accuracy: 0.9431
-    Epoch 3/3
-    9400/9400 [==============================] - 163s 17ms/step - loss: 0.1440 - accuracy: 0.9546 - val_loss: 0.1412 - val_accuracy: 0.9582
-:::
-:::
+```
+Epoch 1/3
+9400/9400 [==============================] - 159s 17ms/step - loss: 0.6091 - accuracy: 0.8492 - val_loss: 0.3076 - val_accuracy: 0.9062
+Epoch 2/3
+9400/9400 [==============================] - 170s 18ms/step - loss: 0.2166 - accuracy: 0.9334 - val_loss: 0.1839 - val_accuracy: 0.9431
+Epoch 3/3
+9400/9400 [==============================] - 163s 17ms/step - loss: 0.1440 - accuracy: 0.9546 - val_loss: 0.1412 - val_accuracy: 0.9582
+```
 
-::: {.cell .markdown}
 ## Testing the Model
 
 Now, we\'ll evaluate the models preformance on images its never seen
 before (testing dataset)
-:::
 
-::: {.cell .code execution_count="70"}
-``` {.python}
+```python
 testing_loss, testing_accuracy = model.evaluate(testing_images, testing_labels, verbose=2)
 print(testing_accuracy)
 ```
+```
+1/1 - 0s - loss: 0.0925 - accuracy: 0.9688
+0.96875
+```
 
-::: {.output .stream .stdout}
-    1/1 - 0s - loss: 0.0925 - accuracy: 0.9688
-    0.96875
-:::
-:::
-
-::: {.cell .markdown}
 ## Visualizing our Results
-:::
 
-::: {.cell .code execution_count="71"}
-``` {.python}
+```python
 figure = plt.figure(figsize=(5, 5))
 plt.plot(history.history['accuracy'], label='Train Set Accuracy')
 plt.plot(history.history['val_accuracy'], label='Test Set Accuracy')
@@ -306,20 +241,12 @@ plt.legend(loc='upper right')
 plt.show()
 ```
 
-::: {.output .display_data}
 ![](readme_images/accuracy_plot.png)
-:::
 
-::: {.output .display_data}
 ![](readme_images/loss_function_plot.png)
-:::
 
-::: {.cell .markdown}
 ## Saving the Model
-:::
 
-::: {.cell .code execution_count="74"}
-``` {.python}
+```python
 model.save('my_model.h5')
 ```
-:::
