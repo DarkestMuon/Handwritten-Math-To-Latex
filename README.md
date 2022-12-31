@@ -4,7 +4,9 @@ Handtex is a React App that lets users upload their handwritten mathematical ima
 
 ## Demo
 
-[![demo](https://imgur.com/a/HK1tzHq)](https://youtu.be/9XZL0-v2ImU)
+<div align="center">
+  <a href="https://youtu.be/9XZL0-v2ImU"><img src="readme_images/demo.png"></a>
+</div>
 
 ## Dataset
 I used the [CROHME dataset from Kaggle uploaded by Xai Nano](https://www.kaggle.com/datasets/xainano/handwrittenmathsymbols). With over 380,000 images, I utilized an 80/20 split for training/testing respectively. This dataset was trained on a convolutional neural network (CNN) which resulted in a 97% accuracy on testing data.
