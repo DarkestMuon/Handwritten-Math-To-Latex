@@ -4,7 +4,7 @@ Handtex is a React App that lets users upload their handwritten mathematical ima
 
 ## Demo
 
-[![Demo]('readme_images/demo.png')](https://youtu.be/9XZL0-v2ImU "Handwritten Math Expressions to Latex DEMO")
+[![]('readme_images/demo.png')](https://youtu.be/9XZL0-v2ImU "Handwritten Math Expressions to Latex DEMO")
 
 
 ## Dataset
