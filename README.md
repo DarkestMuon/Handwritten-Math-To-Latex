@@ -12,11 +12,13 @@ Handtex is a React App that lets users upload their handwritten mathematical ima
 
 It first uses object segmentation to extract the symbols from a given expression. With these extractions (called region's of interest or ROI for short), we load and resize them to prepare them for the CNN. The model is given these resized ROI's and predicts each symbol. The predictions are translated to their equivalent LATEX form and then outputed.
 
-<img src="readme_images/object_segmentation.png" width="200" height="200" />
+<p float='left'>
+  <img src="readme_images/object_segmentation.png" width="200" height="200" />
 
-<img src="readme_images/object_resizing1.png" width="200" height="200" />
+  <img src="readme_images/object_resizing1.png" width="200" height="200" />
 
-<img src="readme_images/object_resizing2.png" width="200" height="200" />
+  <img src="readme_images/object_resizing2.png" width="200" height="200" />
+</p>
 
 ![](readme_images/prediction.png)
 
