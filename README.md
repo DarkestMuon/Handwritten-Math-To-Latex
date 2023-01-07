@@ -50,10 +50,10 @@ print(testing_accuracy)
 
 ## Installation
 
-You do not need the react app to run this project. Simply add images you wish to convert into a directory of your choosing and run the following command in the `main.py` file.
+You do not need the react app to run this project. Simply add images you wish to convert into a directory of your choosing and run the following command in the `server/predict.py` file.
 
 ```python
-main('dir/to/image') 
+predict('dir/to/image') 
 ``` 
 
 To run the CNN locally, download the `models` folder and load the model with the following command:
@@ -66,17 +66,19 @@ tensorflow.keras.models.load_model('models')
 To run the React App, download the **Handtex-React** folder and run:
 
 ```bash
+cd client
 npm install
 npm start
 ``` 
 
 ## Files
 
+# `server`: Flask API - allows users to upload an image and feed the image through the model in real time.
 * `model.ipynb`: notebook of how the Keras model was created. There are explanations in the markdown of each of the steps used to create a CNN.
 * `segmentation.py`: uses OpenCV contour segmentation to separate symbols when given an image with multiple symbols (expression)
 * `classifier.py`: these segmented symbols are passed through our model where they are predicted/classified
 * `evaluator.py`: returns the LATEX string based on the model's predictions
-* `main.py`: brings it all together with Matplotlib GUI of the LATEX.
+* `predict.py`: brings it all together with Matplotlib GUI of the LATEX.
 * `models/`: directory where the model is saved. You may load this model by importing tensorflow and running `tensorflow.keras.models.load_model('models')`
 
 ## Contributing
