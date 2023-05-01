@@ -73,7 +73,7 @@ npm start
 
 ## Files
 
-# `server`: Flask API - allows users to upload an image and feed the image through the model in real time.
+* `server`: Flask API - allows users to upload an image and feed the image through the model in real time.
 * `model.ipynb`: notebook of how the Keras model was created. There are explanations in the markdown of each of the steps used to create a CNN.
 * `segmentation.py`: uses OpenCV contour segmentation to separate symbols when given an image with multiple symbols (expression)
 * `classifier.py`: these segmented symbols are passed through our model where they are predicted/classified
