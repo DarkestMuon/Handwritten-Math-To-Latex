@@ -16,7 +16,7 @@ class_names = ['!', '(', ')', '+', ',', '-', '0', '1', '2', '3', '4', '5', '6', 
 
 def predict():
 
-  folder_directory = '../rois'
+  folder_directory = '/content/img'
   symbols = []
 
   for image in sorted(os.listdir(folder_directory)):
