@@ -11,4 +11,4 @@ def predictor(image_path):
   # returns latex string
   return parser(predict())
 
-predictor("/content/img/idk.png")
+print(predictor("/content/img/idk.png"))
