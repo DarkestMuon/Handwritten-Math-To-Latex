@@ -11,4 +11,4 @@ def predict(image_path):
   # returns latex string
   return parser(predict())
 
-predict("/content/img")
+predict("/content/img/")
