@@ -3,7 +3,7 @@ from evalulator import *
 from classifier import *
 
 
-def predict(image_path):
+def predictor(image_path):
 
   # creates ROI's
   segmentation(image_path)
@@ -11,4 +11,4 @@ def predict(image_path):
   # returns latex string
   return parser(predict())
 
-predict("/content/img/idk.png")
+predictor("/content/img/idk.png")
